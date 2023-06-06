@@ -4,6 +4,7 @@ import (
 	"github.com/Tnze/go-mc/chat"
 	"log"
 	"math/rand"
+	"time"
 )
 
 var (
@@ -53,6 +54,10 @@ func (b *Bot) onGameStart() error {
 
 func (b *Bot) onDisconnect(reason chat.Message) error {
 	// return an error value so that we can stop main loop
+	err := b.Client.JoinServer("cheshuiki.aternos.me:25781")
+	if err != nil {
+		log.Fatal(err)
+	}
 	return DisconnectErr{Reason: reason}
 }
 
@@ -64,6 +69,7 @@ func (b *Bot) onDeath() error {
 		return err
 	}
 	randomIndex := rand.Intn(len(deathMessages))
+	time.Sleep(time.Second * 2)
 	err = b.ChatHandler.SendMessage(deathMessages[randomIndex])
 	if err != nil {
 		log.Printf("Failed to send message: %v\n", err)

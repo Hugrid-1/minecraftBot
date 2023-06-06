@@ -34,8 +34,11 @@ func NewBot(botName string) *Bot {
 
 func (b *Bot) setPlayerHandler() {
 	p := basic.NewPlayer(b.Client, basic.DefaultSettings, basic.EventsListener{
-		Disconnect: b.onDisconnect,
-		Death:      b.onDeath,
+		GameStart:    b.onGameStart,
+		Disconnect:   b.onDisconnect,
+		HealthChange: nil,
+		Death:        b.onDeath,
+		Teleported:   nil,
 	})
 	b.Player = p
 }
