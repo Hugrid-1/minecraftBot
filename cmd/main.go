@@ -2,16 +2,31 @@ package main
 
 import (
 	"errors"
+	"github.com/Hugrid-1/minecraftBot/config"
 	myBot "github.com/Hugrid-1/minecraftBot/internal/bot"
+	"github.com/Hugrid-1/minecraftBot/internal/router"
+	"github.com/Hugrid-1/minecraftBot/internal/server/httpserver"
 	"github.com/Tnze/go-mc/bot"
+	"github.com/joho/godotenv"
 	"log"
 )
 
 func main() {
+	var err error
+	err = godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	appConfig := config.NewAppConfig()
+
+	appRouter := router.NewRouter()
+	server := httpserver.NewHTTPServer(appConfig.ServerSettings, appRouter)
+	_ = server
+
 	nBot := myBot.NewBot("GigaChadBot")
 
 	// Login
-	err := nBot.Client.JoinServer("cheshuiki.aternos.me:25781")
+	err = nBot.Client.JoinServer("cheshuiki.aternos.me:25781")
 	if err != nil {
 		log.Fatal(err)
 	}

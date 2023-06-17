@@ -1,0 +1,45 @@
+{
+  "consumes": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation of minecraft working bot API.\n\nSchemes:\nserver.go\nhttps",
+    "title": "MineBotManager.",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {
+    "/bot/reload": {
+      "post": {
+        "tags": [
+          "Bot"
+        ],
+        "summary": "Reload bot.",
+        "operationId": "BotReloadRequest"
+      }
+    },
+    "/bot/server/update": {
+      "post": {
+        "tags": [
+          "Bot"
+        ],
+        "summary": "Change IP and Port ( bot reloading ).",
+        "operationId": "BotServerUpdateRequest"
+      }
+    },
+    "/status": {
+      "get": {
+        "tags": [
+          "Bot"
+        ],
+        "summary": "Get bot status.",
+        "operationId": "BotStatusRequest"
+      }
+    }
+  }
+}
