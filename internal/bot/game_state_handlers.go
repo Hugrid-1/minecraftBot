@@ -2,6 +2,8 @@ package bot
 
 import (
 	"github.com/Tnze/go-mc/chat"
+	"github.com/Tnze/go-mc/data/packetid"
+	pk "github.com/Tnze/go-mc/net/packet"
 	"log"
 	"math/rand"
 	"time"
@@ -47,7 +49,6 @@ func (b *Bot) onGameStart() error {
 		return err
 	}
 	//watch = make(chan time.Time)
-	//go watchDog()
 
 	return nil
 }
@@ -77,4 +78,11 @@ func (b *Bot) onDeath() error {
 	}
 	log.Println("Died and Respawned")
 	return nil
+}
+
+func (b *Bot) UseItem(hand int32) error {
+	return b.Client.Conn.WritePacket(pk.Marshal(
+		packetid.ServerboundUseItem,
+		pk.VarInt(hand),
+	))
 }
