@@ -1,3 +1,4 @@
-Бот для автоматизации внутриигровой работы
+🤖Bot for automating certain work on the server. 
 
-[В разработке]
+
+The project is in development.
