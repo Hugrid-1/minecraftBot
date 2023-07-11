@@ -1,0 +1,8 @@
+{
+  "name": "minecraftBot",
+  "version": "1.0.0",
+  "dependencies": {
+    "mineflayer": "^4.10.0",
+    "prismarine-viewer": "^1.25.0"
+  }
+}
